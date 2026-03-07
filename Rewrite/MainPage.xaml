@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:behaviors="clr-namespace:Rewrite.Core.Behaviors;assembly=Rewrite.Core"
+             xmlns:controls="clr-namespace:Rewrite.Core.Controls;assembly=Rewrite.Core"
+             x:Class="Rewrite.MainPage"
+             BackgroundColor="{StaticResource DefaultBackground}">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="20" Spacing="20">
+
+            <!-- 1. Title Label -->
+            <Label 
+                Text="Rewrite"
+                FontSize="32"
+                FontAttributes="Bold"
+                TextColor="{StaticResource TextPrimary}"
+                HorizontalOptions="Start" />
+
+            <!-- 2. Message Input Box -->
+            <Border 
+                MinimumHeightRequest="116"
+                StrokeShape="RoundRectangle 16"
+                BackgroundColor="#F2F3F7"
+                Padding="12">
+                <Editor
+                    x:Name="MessageEditor"
+                    Placeholder="Paste or type your message"
+                    AutoSize="TextChanges"
+                    MaxLength="2000"
+                    BackgroundColor="Transparent"
+                    TextColor="#1C1C1E"
+                    PlaceholderColor="#8E8E93"
+                    FontSize="16">
+                    <Editor.Behaviors>
+                        <behaviors:BorderlessEditorBehavior />
+                    </Editor.Behaviors>
+                </Editor>
+            </Border>
+
+            <!-- 3. Tone Buttons Area -->
+            <Grid RowSpacing="12" ColumnSpacing="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:SelectableChip
+                    x:Name="ProfessionalChip"
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Professional"
+                    FontIcon="business_center"
+                    IsSelected="True"
+                    Tapped="OnChipTapped" />
+
+                <controls:SelectableChip
+                    x:Name="PoliteChip"
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    Text="Polite"
+                    FontIcon="chat_bubble"
+                    Tapped="OnChipTapped" />
+
+                <controls:SelectableChip
+                    x:Name="FriendlyChip"
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Friendly"
+                    FontIcon="sentiment_satisfied"
+                    Tapped="OnChipTapped" />
+
+                <controls:SelectableChip
+                    x:Name="ShorterChip"
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Text="Shorter"
+                    FontIcon="short_text"
+                    Tapped="OnChipTapped" />
+            </Grid>
+
+
+            <!-- 4. Improved Message Area -->
+            <VerticalStackLayout Spacing="8">
+                <Label 
+                    Text="IMPROVED MESSAGE"
+                    FontSize="12"
+                    TextColor="Gray"
+                    FontAttributes="Bold" />
+
+                <Border 
+                    HeightRequest="140"
+                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="White"
+                    Padding="0">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Opacity="0.1" Radius="10" Offset="0,2" />
+                    </Border.Shadow>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- 5. Bottom Action Buttons Area -->
+            <VerticalStackLayout Spacing="12">
+                <!-- Copy Button Placeholder -->
+                <Border 
+                    HeightRequest="56"
+                    StrokeShape="RoundRectangle 28"
+                    BackgroundColor="#2F9E8F"
+                    Padding="0" />
+
+                <!-- Share Button Placeholder -->
+                <Border 
+                    HeightRequest="56"
+                    StrokeShape="RoundRectangle 28"
+                    Stroke="#2F9E8F"
+                    StrokeThickness="2"
+                    BackgroundColor="White"
+                    Padding="0" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

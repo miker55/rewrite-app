@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rewrite.Core.Controls.SelectableChip"
+             x:Name="this">
+    <Border 
+        HeightRequest="48"
+        StrokeShape="RoundRectangle 16">
+        <Border.GestureRecognizers>
+            <TapGestureRecognizer Tapped="OnTapped" />
+        </Border.GestureRecognizers>
+        
+        <HorizontalStackLayout 
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            Spacing="8">
+
+            <!-- Font Icon (Material Symbols) -->
+            <Label 
+                x:Name="ChipFontIcon"
+                FontFamily="MaterialSymbols"
+                FontSize="20"
+                VerticalOptions="Center"
+                IsVisible="False" />
+
+            <!-- Image Icon (if needed) -->
+            <Image 
+                x:Name="ChipIcon"
+                WidthRequest="20"
+                HeightRequest="20"
+                Aspect="AspectFit"
+                HorizontalOptions="Center"
+                VerticalOptions="Center"
+                IsVisible="False" />
+
+            <Label 
+                x:Name="ChipLabel"
+                FontSize="14"
+                VerticalOptions="Center" />
+        </HorizontalStackLayout>
+    </Border>
+</ContentView>
