@@ -1,0 +1,110 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Rewrite.MainPage"
+             BackgroundColor="#F6F7FB">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="24,40,24,24" Spacing="20">
+
+            <!-- 1. Title Label -->
+            <Label 
+                Text="Rewrite"
+                FontSize="32"
+                FontAttributes="Bold"
+                TextColor="#1C1C1E"
+                HorizontalOptions="Start" />
+
+            <!-- 2. Message Input Box Placeholder -->
+            <Border 
+                HeightRequest="140"
+                StrokeShape="RoundRectangle 16"
+                BackgroundColor="#F2F3F7"
+                Padding="0" />
+
+            <!-- 3. Tone Buttons Area -->
+            <Grid RowSpacing="12" ColumnSpacing="12">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- Row 0, Column 0 -->
+                <Border 
+                    Grid.Row="0" 
+                    Grid.Column="0"
+                    HeightRequest="48"
+                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#E9EEF1" />
+
+                <!-- Row 0, Column 1 -->
+                <Border 
+                    Grid.Row="0" 
+                    Grid.Column="1"
+                    HeightRequest="48"
+                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#E9EEF1" />
+
+                <!-- Row 1, Column 0 -->
+                <Border 
+                    Grid.Row="1" 
+                    Grid.Column="0"
+                    HeightRequest="48"
+                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#E9EEF1" />
+
+                <!-- Row 1, Column 1 -->
+                <Border 
+                    Grid.Row="1" 
+                    Grid.Column="1"
+                    HeightRequest="48"
+                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="#E9EEF1" />
+            </Grid>
+
+            <!-- 4. Improved Message Area -->
+            <VerticalStackLayout Spacing="8">
+                <Label 
+                    Text="IMPROVED MESSAGE"
+                    FontSize="12"
+                    TextColor="Gray"
+                    FontAttributes="Bold" />
+
+                <Border 
+                    HeightRequest="140"
+                    StrokeShape="RoundRectangle 16"
+                    BackgroundColor="White"
+                    Padding="0">
+                    <Border.Shadow>
+                        <Shadow Brush="Black" Opacity="0.1" Radius="10" Offset="0,2" />
+                    </Border.Shadow>
+                </Border>
+            </VerticalStackLayout>
+
+            <!-- 5. Bottom Action Buttons Area -->
+            <VerticalStackLayout Spacing="12">
+                <!-- Copy Button Placeholder -->
+                <Border 
+                    HeightRequest="56"
+                    StrokeShape="RoundRectangle 28"
+                    BackgroundColor="#2F9E8F"
+                    Padding="0" />
+
+                <!-- Share Button Placeholder -->
+                <Border 
+                    HeightRequest="56"
+                    StrokeShape="RoundRectangle 28"
+                    Stroke="#2F9E8F"
+                    StrokeThickness="2"
+                    BackgroundColor="White"
+                    Padding="0" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
