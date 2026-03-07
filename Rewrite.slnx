@@ -3,5 +3,6 @@
     <File Path=".gitignore" />
     <File Path="README.md" />
   </Folder>
-  <Project Path="Rewrite.App/Rewrite.csproj" />
+  <Project Path="Rewrite/Rewrite.csproj" />
+  <Project Path="Rewrite.Core/Rewrite.Core.csproj" Id="01171ca6-235d-4a90-a8eb-6ecbcc656c71" />
 </Solution>
