@@ -31,7 +31,7 @@
 		<NoWarn>$(NoWarn);MVVMTK0045</NoWarn>
 
 		<!-- Display name -->
-		<ApplicationTitle>Rewrite - Fix Messages Fast</ApplicationTitle>
+		<ApplicationTitle>Rewrite</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.cedoryn.rewrite</ApplicationId>
