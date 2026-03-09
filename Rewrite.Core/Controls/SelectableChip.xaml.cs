@@ -4,6 +4,15 @@ public partial class SelectableChip : ContentView
 {
     private Border? _border;
 
+    private static Color GetPrimaryColor()
+    {
+        if (Application.Current?.Resources.TryGetValue("Primary", out var color) == true && color is Color primaryColor)
+        {
+            return primaryColor;
+        }
+        return Color.FromArgb("#2F9E8F"); // Fallback if resource not found
+    }
+
     public static readonly BindableProperty TextProperty =
         BindableProperty.Create(nameof(Text), typeof(string), typeof(SelectableChip), string.Empty,
             propertyChanged: OnTextChanged);
@@ -21,7 +30,7 @@ public partial class SelectableChip : ContentView
             propertyChanged: OnFontIconChanged);
 
     public static readonly BindableProperty ActiveColorProperty =
-        BindableProperty.Create(nameof(ActiveColor), typeof(Color), typeof(SelectableChip), Color.FromArgb("#2F9E8F"));
+        BindableProperty.Create(nameof(ActiveColor), typeof(Color), typeof(SelectableChip), GetPrimaryColor());
 
     public static readonly BindableProperty InactiveColorProperty =
         BindableProperty.Create(nameof(InactiveColor), typeof(Color), typeof(SelectableChip), Color.FromArgb("#E9EEF1"));
@@ -31,6 +40,12 @@ public partial class SelectableChip : ContentView
 
     public static readonly BindableProperty InactiveTextColorProperty =
         BindableProperty.Create(nameof(InactiveTextColor), typeof(Color), typeof(SelectableChip), Color.FromArgb("#1C1C1E"));
+
+    public static readonly BindableProperty DisabledBackgroundColorProperty =
+        BindableProperty.Create(nameof(DisabledBackgroundColor), typeof(Color), typeof(SelectableChip), Color.FromArgb("#ECEFF2"));
+
+    public static readonly BindableProperty DisabledTextColorProperty =
+        BindableProperty.Create(nameof(DisabledTextColor), typeof(Color), typeof(SelectableChip), Color.FromArgb("#A0A4AA"));
 
     public string Text
     {
@@ -78,6 +93,18 @@ public partial class SelectableChip : ContentView
     {
         get => (Color)GetValue(InactiveTextColorProperty);
         set => SetValue(InactiveTextColorProperty, value);
+    }
+
+    public Color DisabledBackgroundColor
+    {
+        get => (Color)GetValue(DisabledBackgroundColorProperty);
+        set => SetValue(DisabledBackgroundColorProperty, value);
+    }
+
+    public Color DisabledTextColor
+    {
+        get => (Color)GetValue(DisabledTextColorProperty);
+        set => SetValue(DisabledTextColorProperty, value);
     }
 
     public event EventHandler<EventArgs>? Tapped;
@@ -141,27 +168,53 @@ public partial class SelectableChip : ContentView
         }
     }
 
+    protected override void OnPropertyChanged(string? propertyName = null)
+    {
+        base.OnPropertyChanged(propertyName);
+
+        if (propertyName == nameof(IsEnabled))
+        {
+            UpdateVisualState();
+        }
+    }
+
     private void UpdateVisualState()
     {
         if (_border != null)
         {
-            _border.BackgroundColor = IsSelected ? ActiveColor : InactiveColor;
+            if (!IsEnabled)
+            {
+                _border.BackgroundColor = DisabledBackgroundColor;
+            }
+            else
+            {
+                _border.BackgroundColor = IsSelected ? ActiveColor : InactiveColor;
+            }
+        }
+
+        Color textColor;
+        if (!IsEnabled)
+        {
+            textColor = DisabledTextColor;
+        }
+        else
+        {
+            textColor = IsSelected ? ActiveTextColor : InactiveTextColor;
         }
 
         if (ChipLabel != null)
         {
-            ChipLabel.TextColor = IsSelected ? ActiveTextColor : InactiveTextColor;
+            ChipLabel.TextColor = textColor;
         }
 
         if (ChipFontIcon != null && ChipFontIcon.IsVisible)
         {
-            // Font icon matches text color - white when selected, dark when not
-            ChipFontIcon.TextColor = IsSelected ? ActiveTextColor : InactiveTextColor;
+            ChipFontIcon.TextColor = textColor;
         }
 
         if (ChipIcon != null && ChipIcon.IsVisible)
         {
-            ChipIcon.Opacity = IsSelected ? 1.0 : 0.6;
+            ChipIcon.Opacity = IsEnabled ? (IsSelected ? 1.0 : 0.6) : 0.5;
         }
     }
 

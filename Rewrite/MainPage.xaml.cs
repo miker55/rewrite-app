@@ -1,17 +1,32 @@
 ﻿using Rewrite.Core.Controls;
+using Rewrite.ViewModels;
 
 namespace Rewrite;
 
 public partial class MainPage : ContentPage
 {
     private SelectableChip? _activeChip;
+    private readonly MainPageViewModel _viewModel;
 
-    public MainPage()
+    public MainPage(MainPageViewModel viewModel)
     {
         InitializeComponent();
 
-        // Set Professional as initially active
-        _activeChip = ProfessionalChip;
+        _viewModel = viewModel;
+        BindingContext = _viewModel;
+
+        // Subscribe to text changes
+        MessageEditor.TextChanged += (s, e) =>
+        {
+            _viewModel.UpdateMessageState(MessageEditor.Text);
+
+            // Deselect any active chip when text changes
+            if (_activeChip != null)
+            {
+                _activeChip.IsSelected = false;
+                _activeChip = null;
+            }
+        };
     }
 
     private void OnChipTapped(object? sender, EventArgs e)

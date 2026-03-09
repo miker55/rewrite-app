@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 using Syncfusion.Maui.Toolkit.Hosting;
+using Rewrite.ViewModels;
 
 namespace Rewrite;
 
@@ -17,6 +18,13 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 				fonts.AddFont("MaterialSymbolsOutlined.ttf", "MaterialSymbols");
 			});
+
+		// Register ViewModels
+		builder.Services.AddTransient<MainPageViewModel>();
+
+		// Register Pages
+		builder.Services.AddTransient<MainPage>();
+		builder.Services.AddSingleton<AppShell>();
 
 #if DEBUG
 		builder.Logging.AddDebug();

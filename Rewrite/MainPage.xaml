@@ -7,15 +7,15 @@
              BackgroundColor="{StaticResource DefaultBackground}">
 
     <ScrollView>
-        <VerticalStackLayout Padding="20" Spacing="20">
+        <VerticalStackLayout Padding="20" Spacing="8">
 
             <!-- 1. Title Label -->
             <Label 
-                Text="Rewrite"
-                FontSize="32"
+                Text="ORIGINAL MESSAGE"
+                FontSize="12"
+                TextColor="Gray"
                 FontAttributes="Bold"
-                TextColor="{StaticResource TextPrimary}"
-                HorizontalOptions="Start" />
+                Margin="10,0,0,0"/>
 
             <!-- 2. Message Input Box -->
             <Border 
@@ -55,7 +55,7 @@
                     Grid.Column="0"
                     Text="Professional"
                     FontIcon="business_center"
-                    IsSelected="True"
+                    IsEnabled="{Binding HasMessage}"
                     Tapped="OnChipTapped" />
 
                 <controls:SelectableChip
@@ -64,6 +64,7 @@
                     Grid.Column="1"
                     Text="Polite"
                     FontIcon="chat_bubble"
+                    IsEnabled="{Binding HasMessage}"
                     Tapped="OnChipTapped" />
 
                 <controls:SelectableChip
@@ -72,6 +73,7 @@
                     Grid.Column="0"
                     Text="Friendly"
                     FontIcon="sentiment_satisfied"
+                    IsEnabled="{Binding HasMessage}"
                     Tapped="OnChipTapped" />
 
                 <controls:SelectableChip
@@ -80,17 +82,30 @@
                     Grid.Column="1"
                     Text="Shorter"
                     FontIcon="short_text"
+                    IsEnabled="{Binding HasMessage}"
                     Tapped="OnChipTapped" />
             </Grid>
 
 
             <!-- 4. Improved Message Area -->
-            <VerticalStackLayout Spacing="8">
-                <Label 
-                    Text="IMPROVED MESSAGE"
-                    FontSize="12"
-                    TextColor="Gray"
-                    FontAttributes="Bold" />
+            <VerticalStackLayout Margin="0,20,0,0" Spacing="8">
+                <Grid ColumnDefinitions="*,Auto">
+                    <Label 
+                        Grid.Column="0"
+                        Text="IMPROVED MESSAGE"
+                        FontSize="12"
+                        TextColor="Gray"
+                        FontAttributes="Bold"
+                        Margin="10,0,0,0" />
+                    <Label 
+                        Grid.Column="1"
+                        Text="auto_awesome"
+                        FontFamily="MaterialSymbols"
+                        FontSize="20"
+                        TextColor="Gray"
+                        VerticalOptions="Center"
+                        Margin="0,0,10,0"/>
+                </Grid>
 
                 <Border 
                     HeightRequest="140"
@@ -109,14 +124,14 @@
                 <Border 
                     HeightRequest="56"
                     StrokeShape="RoundRectangle 28"
-                    BackgroundColor="#2F9E8F"
+                    BackgroundColor="{StaticResource Primary}"
                     Padding="0" />
 
                 <!-- Share Button Placeholder -->
                 <Border 
                     HeightRequest="56"
                     StrokeShape="RoundRectangle 28"
-                    Stroke="#2F9E8F"
+                    Stroke="{StaticResource Primary}"
                     StrokeThickness="2"
                     BackgroundColor="White"
                     Padding="0" />
