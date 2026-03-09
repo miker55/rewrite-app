@@ -4,7 +4,7 @@
     <rect width="1024" height="1024" fill="#2C7A7B" rx="226.5"/>
 
     <!-- Foreground scaled to adaptive safe zone -->
-    <g transform="translate(512,512) scale(0.78)">
+    <g transform="translate(512,512) scale(1.25)">
 
         <!-- Chat bubble -->
         <g transform="translate(0,-22)">
